@@ -20,6 +20,7 @@ if st.sidebar.button("Predict"):
     # Path for image and CSV
     image_path = os.path.join("Images", f"{ticker}_predictions.png")
     csv_path = os.path.join("data","results", f"{ticker}_data.csv")
+    print(csv_path)
 
     # Display image
     if os.path.exists(image_path):
@@ -28,6 +29,9 @@ if st.sidebar.button("Predict"):
     # Display table data from CSV
     if os.path.exists(csv_path):
         data = pd.read_csv(csv_path)
+        #print(csv_path)
+        st.line_chart(data=data, x="Actual", y="Predictions", width=0, height=0, use_container_width=True)
+
         st.write(data)
 
 # To run the app, you would use the command: streamlit run your_script_name.py

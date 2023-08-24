@@ -30,7 +30,7 @@ if st.sidebar.button("Predict"):
     if os.path.exists(csv_path):
         data = pd.read_csv(csv_path)
         #print(csv_path)
-        st.line_chart(data=data, x="Actual", y="Predictions", width=0, height=0, use_container_width=True)
+        #st.line_chart(data=data, x="Actual", y="Predictions", width=0, height=0, use_container_width=True)
 
         st.write(data)
 

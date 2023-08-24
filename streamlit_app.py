@@ -2,6 +2,21 @@ import streamlit as st
 import pandas as pd
 import os
 import yfinance as yf
+import requests
+
+API_KEY = '0999f084017643be9b8dc053c3a258e3'
+ENDPOINT = 'https://newsapi.org/v2/everything'
+
+def get_news(ticker):
+    params = {
+        'q': ticker,
+        'apiKey': API_KEY
+    }
+    response = requests.get(ENDPOINT, params=params)
+    if response.status_code == 200:
+        return response.json()['articles']
+    else:
+        return []
 
 # CSS for styling
 st.markdown("""
@@ -35,7 +50,13 @@ choice = st.sidebar.radio("Predict Adjusted Close Prices for: ", options)
 # Action button
 if st.sidebar.button("Predict"):
     stock_info = yf.Ticker(ticker)
-    info = stock_info.info
+    news_data = get_news(ticker)
+    st.subheader('Recent News')
+    for article in news_data[:3]:  # Display top 3 news articles
+        st.write(f"**{article['title']}**")
+        st.write(article['description'])
+        st.image(article['urlToImage'])
+        info = stock_info.info
     
     # Display stock details
     st.write(f"**{info['longName']} ({ticker})**")

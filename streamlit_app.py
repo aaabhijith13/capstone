@@ -9,7 +9,7 @@ st.sidebar.title("Stock Predictor")
 stock_list = ["AAPL", "GOOGL", "AMZN", "MSFT"]
 
 # Multi-input for stock tickers using multiselect dropdown
-ticker = st.sidebar.select("Select a Stock Ticker to predict: ", stock_list)
+ticker = st.selectbox("Select a Stock Ticker to predict: ", stock_list)
 
 # Choice of prediction duration
 options = ["Next Day", "Next 7 Days", "Next 14 Days", "Next 30 Days"]

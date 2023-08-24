@@ -39,10 +39,11 @@ if st.sidebar.button("Predict"):
     
     # Display stock details
     st.write(f"**{info['longName']} ({ticker})**")
-    st.write(f"**Current Price:** ${info['regularMarketPrice']}")
-    st.write(f"**Market Cap:** ${info['marketCap']}")
-    st.write(f"**52 Week High:** ${info['fiftyTwoWeekHigh']}")
-    st.write(f"**52 Week Low:** ${info['fiftyTwoWeekLow']}")
+    st.write(f"**Current Price:** ${info.get('regularMarketPrice', 'N/A'):,}")
+    st.write(f"**Market Cap:** ${info.get('marketCap', 'N/A'):,}")
+    st.write(f"**52 Week High:** ${info.get('fiftyTwoWeekHigh', 'N/A'):,}")
+    st.write(f"**52 Week Low:** ${info.get('fiftyTwoWeekLow', 'N/A'):,}")
+
     
     # Placeholder for news (this is just a mockup, in reality you'd want to fetch real news data)
     st.subheader('Recent News')

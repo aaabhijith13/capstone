@@ -1,6 +1,23 @@
 import streamlit as st
 import pandas as pd
 import os
+import yfinance as yf
+
+# CSS for styling
+st.markdown("""
+<style>
+body {
+    color: #333333;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+}
+.stButton > button {
+    color: #fff;
+    background-color: #400090;
+}
+</style>
+""", unsafe_allow_html=True)
+
 
 # Sidebar
 st.sidebar.title("Stock Predictor")
@@ -17,6 +34,22 @@ choice = st.sidebar.radio("Predict Adjusted Close Prices for: ", options)
 
 # Action button
 if st.sidebar.button("Predict"):
+    stock_info = yf.Ticker(ticker)
+    info = stock_info.info
+    
+    # Display stock details
+    st.write(f"**{info['longName']} ({ticker})**")
+    st.write(f"**Current Price:** ${info['regularMarketPrice']}")
+    st.write(f"**Market Cap:** ${info['marketCap']}")
+    st.write(f"**52 Week High:** ${info['fiftyTwoWeekHigh']}")
+    st.write(f"**52 Week Low:** ${info['fiftyTwoWeekLow']}")
+    
+    # Placeholder for news (this is just a mockup, in reality you'd want to fetch real news data)
+    st.subheader('Recent News')
+    st.write("1. Stock XYZ has reached an all-time high!")
+    st.write("2. Analysts predict a bullish trend for Stock XYZ.")
+    st.write("3. Stock XYZ announces quarterly dividends.")
+
     # Path for image and CSV
     image_path = os.path.join("Images", f"{ticker}_predictions.png")
     csv_path = os.path.join("data","results", f"{ticker}_data.csv")

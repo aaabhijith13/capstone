@@ -1,5 +1,4 @@
-matplotlib
-imutils
-scikit-image
 streamlit
-scikit-learn
+requests
+numpy
+matplotlib

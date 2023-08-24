@@ -20,7 +20,7 @@ if st.sidebar.button("Predict"):
 
     for ticker in tickers:
         # Path for image and CSV
-        image_path = os.path.join("images", f"predictions_{ticker}.png")
+        image_path = os.path.join("Images", f"predictions_{ticker}.png")
         csv_path = os.path.join("data", f"{ticker}_data.csv")
 
         # Display image

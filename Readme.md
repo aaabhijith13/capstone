@@ -42,6 +42,13 @@ To assess the performance of the predictive model, the following metrics will be
 - Mean Absolute Error -  MAE is less sensitive to outliers. In the context of stock prices, sudden spikes or drops.
 - Validation Loss - Validation loss provides an indication of how well the model is generalizing to new, unseen data. By monitoring the validation loss during training, you can detect overfitting early on.
 
+## Hyperparameter Tuning 
+The following were used as the hyperparameters for the LSTM model: 
+- Dense Units: The number of "Dense Units" refers to the number of neurons or nodes in that Dense layer. The number of units in a Dense layer affects the capacity of the layer to capture patterns. More units can capture more complex patterns but also increase the risk of overfitting and computational cost.
+- Learning Rate: The learning rate is a hyperparameter that determines the step size at each iteration while moving towards a minimum of the loss function. In other words, it controls how much to adjust the model in response to the estimated error at each update.
+- LSTM units: The number of LSTM units determines the memory capacity of that LSTM layer. More units can capture longer or more complex sequences and dependencies in the data but come at the cost of increased computational load and risk of overfitting.
+
+The final hyperparameters for all the models can be found here - [results](./data/results/hyo/)
 
 ## Project Design
 1. **Data Collection**: Retrieve the past 10 years of historical stock data for selected symbols.

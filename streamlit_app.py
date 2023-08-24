@@ -1,30 +1,35 @@
 import streamlit as st
-import requests
-import numpy as np
-#import matplotlib.pyplot as plt
+import pandas as pd
+import os
 
-def main():
-    st.markdown("<h1 style='text-align: center; color: white;'>Stock Price Prediction</h1>", unsafe_allow_html=True)
+# Sidebar
+st.sidebar.title("Stock Predictor")
 
-    # Collect input from the user
-    stock = st.selectbox('Select a stock:', ['AAPL', 'TLSA', 'GOOGL'])
-    days = st.slider('Number of days to predict:', 1, 30)
+# Pre-defined list of popular stocks (can be expanded)
+stock_list = ["AAPL", "GOOGL", "AMZN", "MSFT"]
 
-    # When user clicks the 'Predict' button, send data to SageMaker
-    if st.button('Predict'):
-        
+# Multi-input for stock tickers using multiselect dropdown
+tickers = st.sidebar.multiselect("Select a Stock Ticker to predict: ", stock_list)
 
-        # Make the request to the SageMaker endpoint
-        # response = requests.post(endpoint_url, json=payload)
-        # predictions = response.json().get('predictions', [])
+# Choice of prediction duration
+options = ["Next Day", "Next 7 Days", "Next 14 Days", "Next 30 Days"]
+choice = st.sidebar.radio("Predict Adjusted Close Prices for: ", options)
 
-        # Display the predictions as a graph
-        # plt.figure(figsize=(10, 6))
-        # plt.plot(np.arange(len(predictions)), predictions, '-o')
-        # plt.title(f"Predicted Prices for {stock} over {days} Days")
-        # plt.xlabel("Days")
-        # plt.ylabel("Predicted Price")
-        # st.pyplot(plt)
+# Action button
+if st.sidebar.button("Predict"):
 
-if __name__ == "__main__":
-    main()
+    for ticker in tickers:
+        # Path for image and CSV
+        image_path = os.path.join("images", f"predictions_{ticker}.png")
+        csv_path = os.path.join("data", f"{ticker}_data.csv")
+
+        # Display image
+        if os.path.exists(image_path):
+            st.image(image_path, caption=f"Prediction for {ticker}")
+
+        # Display table data from CSV
+        if os.path.exists(csv_path):
+            data = pd.read_csv(csv_path)
+            st.write(data)
+
+# To run the app, you would use the command: streamlit run your_script_name.py

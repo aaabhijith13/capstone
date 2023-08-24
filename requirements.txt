@@ -1,0 +1,5 @@
+matplotlib
+imutils
+scikit-image
+streamlit
+scikit-learn

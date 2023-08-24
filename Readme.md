@@ -23,28 +23,32 @@ Initial stocks under consideration:
 - Google - "GOOGL"
 
 ## Solution Statement
-LSTM (Long Short-Term Memory) model, a type of recurrent neural network (RNN), will be employed using PyTorch to make predictions. LSTM networks are adept at capturing long-term dependencies in sequential data, making them apt for stock forecasting. The model will be trained on up to 3 years of data, from 2020 to 2023.
+During the EDA and after further research, I found out that it would be better to utilize a univariate model, instead of utilizing a multi-variate approach, as the variables - Open, Close, High, Low and Adjusted Prices are all highly correlated amongst each other. Hence, utilizing a univariate model with Adj Close was the only variable used for analysis. A time window (time steps) was utilized around 7 days, of data was used to predict 1 day. So the previous 7 days of Adjusted Close data would be used to predict the next days data. The data was split into 80-10-10 split of train-validation-test. LSTM (Long Short-Term Memory) model, a type of recurrent neural network (RNN), will be employed using PyTorch to make predictions. LSTM networks are adept at capturing long-term dependencies in sequential data, making them apt for stock forecasting. The model will be trained on up to 3 years of data, from 2020 to 2023.
 
 ## Benchmark Model
 A suitable benchmark model for stock forecasting could be:
-- A simple LSTM Model that will compute the MSE
+- A simple LSTM Model that will compute the MSE with an Input layer of 7,1 - time steps, features
+- 64 LSTM units
+- Adam Optimizer with learning rate of 0.001
+- 50 Epochs
+- Metrics - Mean Absolute Error, Val Loss
 
 ## Evaluation Metrics
 To assess the performance of the predictive model, the following metrics will be employed:
-- Mean Squared Error (MSE)
+- Mean Absolute Error -  MAE is less sensitive to outliers. In the context of stock prices, sudden spikes or drops.
+- Validation Loss - Validation loss provides an indication of how well the model is generalizing to new, unseen data. By monitoring the validation loss during training, you can detect overfitting early on.
+
 
 ## Project Design
 1. **Data Collection**: Retrieve the past 10 years of historical stock data for selected symbols.
-2. **Data Preprocessing**: Cleanse the data, handle missing values, and format it for analysis.
+2. **Data Preprocessing**: Cleanse the data, handle missing values, and format it for analysis. Conduct EDA of data. 
 3. **Model Development and Evaluation**: Train deep learning models and evaluate their performance against the benchmark model using the chosen metrics.
 4. **Model Fine-tuning**: Adjust model hyperparameters based on evaluation results.
 5. **Prediction and Analysis**: Apply the model to forecast future stock prices and compare predictions against current trends.
 6. **Interface and Visualization**: Showcase the findings using visualizations on platforms like GitHub. A user-friendly interface will be built using Streamlit and deployed on Streamlit cloud enviorment. Users can select from the available symbols and request predictions for specific date ranges.
 
 ## Additional Suggestions to Increase Project Complexity
-1. **Sentiment Analysis**: Incorporate news sentiment analysis to gauge the impact of news on stock price movements.
+1. **Sentiment Analysis**: Incorporate news sentiment analysis to gauge the impact of news on stock price movements. With more time, this would defentively be a good input for the analysis. Stock Prices alone aren't good indicators for predicting prices as the stock market is much more volatility and depth to it, utilization of current events through the use of news API will yield better results. 
 2. **Incorporate Macroeconomic Data**: Use macroeconomic indicators like GDP growth, interest rates, and unemployment rates to enhance predictions.
-3. **Ensemble Methods**: Combine predictions from multiple models to improve accuracy.
-4. **Real-time Prediction**: Implement a real-time stock price prediction feature using live data feeds.
-5. **Back-testing**: Create a system to back-test strategies based on the model's predictions.
+3. **Real-time Prediction**: Implement a real-time stock price prediction feature using live data feeds. Utilizing Sagemaker Multi-model Endpoint to make real-time predictions for multiple stocks and the main app can be hosted using an EC2 instance. 
 

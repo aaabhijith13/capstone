@@ -1,0 +1,22 @@
+{
+    "AAPL": {
+        "dense_units": "23",
+        "learning-rate": "0.04740519809403688",
+        "lstm_units": "78"
+    },
+    "AMZN": {
+        "dense_units": "56",
+        "learning-rate": "0.04022326752131041",
+        "lstm_units": "103"
+    },
+    "MSFT": {
+        "dense_units": "19",
+        "learning-rate": "0.0003391651777127477",
+        "lstm_units": "39"
+    },
+    "GOOGL": {
+        "dense_units": "18",
+        "learning-rate": "0.0001708240486886027",
+        "lstm_units": "34"
+    }
+}

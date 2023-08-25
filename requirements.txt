@@ -1,1 +1,4 @@
 pandas==1.3.3      # as of last known version, please check for the latest
+yfinance 
+requests
+matplotlib

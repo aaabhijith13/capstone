@@ -27,11 +27,11 @@ Initial stocks under consideration:
 - The final model predictions for each of the stocks can be found here - [pred](./data/results/pred/)
 
 ## Solution Statement
-During the EDA and after further research, I found out that it would be better to utilize a univariate model, instead of utilizing a multi-variate approach, as the variables - Open, Close, High, Low and Adjusted Prices are all highly correlated amongst each other. Hence, utilizing a univariate model with Adj Close was the only variable used for analysis. A time window (time steps) was utilized around 7 days, of data was used to predict 1 day. So the previous 7 days of Adjusted Close data would be used to predict the next days data. The data was split into 80-10-10 split of train-validation-test. LSTM (Long Short-Term Memory) model, a type of recurrent neural network (RNN), will be employed using PyTorch to make predictions. LSTM networks are adept at capturing long-term dependencies in sequential data, making them apt for stock forecasting. The model will be trained on up to 3 years of data, from 2020 to 2023.
+During the EDA and after further research, I found out that it would be better to utilize a univariate model, instead of utilizing a multi-variate approach, as the variables - Open, Close, High, Low and Adjusted Prices are all highly correlated amongst each other. Hence, utilizing a univariate model with Adj Close was the only variable used for analysis. A time window (time steps) was utilized around 3 days, of data was used to predict 1 day. So the previous 3 days of Adjusted Close data would be used to predict the next days data. The data was split into 80-10-10 split of train-validation-test. LSTM (Long Short-Term Memory) model, a type of recurrent neural network (RNN), will be employed using PyTorch to make predictions. LSTM networks are adept at capturing long-term dependencies in sequential data, making them apt for stock forecasting. The model will be trained on up to 5 years of data, from 2018 to 2023.
 
 ## Benchmark Model
 A suitable benchmark model for stock forecasting could be:
-- A simple LSTM Model that will compute the MSE with an Input layer of 7,1 - time steps, features
+- A simple LSTM Model that will compute the MSE with an Input layer of 3,1 - time steps, features
 - 64 LSTM units
 - Adam Optimizer with learning rate of 0.001
 - 50 Epochs

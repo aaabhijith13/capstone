@@ -48,7 +48,7 @@ The following were used as the hyperparameters for the LSTM model:
 - Learning Rate: The learning rate is a hyperparameter that determines the step size at each iteration while moving towards a minimum of the loss function. In other words, it controls how much to adjust the model in response to the estimated error at each update.
 - LSTM units: The number of LSTM units determines the memory capacity of that LSTM layer. More units can capture longer or more complex sequences and dependencies in the data but come at the cost of increased computational load and risk of overfitting.
 
-The final hyperparameters for all the models can be found here - [results](./data/results/hyo/)
+The final hyperparameters for all the models can be found here - [results](./data/results/hpo/)
 
 ## Project Design
 1. **Data Collection**: Retrieve the past 10 years of historical stock data for selected symbols.
